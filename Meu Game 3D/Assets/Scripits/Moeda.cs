@@ -6,6 +6,8 @@ using UnityEngine;
 public class Moeda : MonoBehaviour
 {
     public int velocidadeGiro = 50;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +18,7 @@ public class Moeda : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            FindObjectOfType<GameManager>().SubtrairMoedas(1);
             Destroy(gameObject);
         }
     }
