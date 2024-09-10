@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 {
     public int velocidade = 10;
     public Rigidbody  rb;
+    private AudioSource source;
     public int forcaPulo = 10;
     public bool noChao = false;
     //start is called before the first frame update
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log("hello mundo");
         TryGetComponent(out rb);
+        TryGetComponent(out source);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -37,6 +39,7 @@ public class Player : MonoBehaviour
         rb.AddForce(direcao * velocidade * Time.deltaTime, ForceMode.Impulse);
         if (Input.GetKeyDown(KeyCode.Space) && noChao) //pulo
         {
+            source.Play();
             rb.AddForce(Vector3.up * forcaPulo,ForceMode.Impulse);
             noChao = false;
         }
